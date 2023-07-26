@@ -31,12 +31,12 @@ const getUserById = (req, res) => {
 };
 
 const postUser = (req, res) => {
-  const { name, email } = req.body;
+  const { firstname, lastname, email, city, language } = req.body;
 
   database
     .query(
-      "INSERT INTO users(name, email) VALUES (?, ?)",
-      [name, email]
+      "INSERT INTO users(firstname, lastname, email, city, language) VALUES (?, ?, ?, ?, ?)",
+      [firstname, lastname, email, city, language]
     )
     .then(([result]) => {
       res.location(`/api/users/${result.insertId}`);
